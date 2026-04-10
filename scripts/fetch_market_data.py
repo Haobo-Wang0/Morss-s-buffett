@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
+import time
 from pathlib import Path
-import math
 
 import akshare as ak
 
@@ -38,88 +38,111 @@ def trend_label(series):
     return '震荡'
 
 
+def with_retry(fetcher, label, retries=3, sleep_seconds=2):
+    last_err = None
+    for i in range(retries):
+        try:
+            return fetcher()
+        except Exception as e:
+            last_err = e
+            if i < retries - 1:
+                time.sleep(sleep_seconds)
+    raise RuntimeError(f'{label} 获取失败: {last_err}')
+
+
 def get_wuxi():
-    df = ak.stock_zh_a_hist(symbol='603259', period='daily', adjust='qfq')
-    last5 = df.tail(5).reset_index(drop=True)
-    row = last5.iloc[-1]
-    prev = last5.iloc[-2] if len(last5) >= 2 else None
-    close = to_float(row['收盘'])
-    prev_close = to_float(prev['收盘']) if prev is not None else None
-    return {
-        'name': '药明康德',
-        'en': 'WUXI APPTEC',
-        'date': str(row['日期'])[:10],
-        'price': close,
-        'change': close - prev_close if prev_close is not None else None,
-        'pct': to_float(row['涨跌幅']),
-        'open': to_float(row['开盘']),
-        'high': to_float(row['最高']),
-        'low': to_float(row['最低']),
-        'history_dates': [str(x)[:10] for x in last5['日期'].tolist()],
-        'history_prices': [to_float(x) for x in last5['收盘'].tolist()],
-        'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['收盘']), to_float(last5.iloc[-3]['收盘'])) if len(last5) >= 3 else None,
-        'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['收盘']), to_float(last5.iloc[0]['收盘'])) if len(last5) >= 5 else None,
-        'trend_3d_label': trend_label(last5.tail(3)['收盘'].tolist()) if len(last5) >= 3 else '数据不足',
-        'trend_5d_label': trend_label(last5['收盘'].tolist()),
-        'source_note': 'A股前复权日线',
-    }
+    def _fetch():
+        df = ak.stock_zh_a_hist(symbol='603259', period='daily', adjust='qfq')
+        last5 = df.tail(5).reset_index(drop=True)
+        row = last5.iloc[-1]
+        prev = last5.iloc[-2] if len(last5) >= 2 else None
+        close = to_float(row['收盘'])
+        prev_close = to_float(prev['收盘']) if prev is not None else None
+        return {
+            'name': '药明康德',
+            'en': 'WUXI APPTEC',
+            'date': str(row['日期'])[:10],
+            'price': close,
+            'change': close - prev_close if prev_close is not None else None,
+            'pct': to_float(row['涨跌幅']),
+            'open': to_float(row['开盘']),
+            'high': to_float(row['最高']),
+            'low': to_float(row['最低']),
+            'history_dates': [str(x)[:10] for x in last5['日期'].tolist()],
+            'history_prices': [to_float(x) for x in last5['收盘'].tolist()],
+            'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['收盘']), to_float(last5.iloc[-3]['收盘'])) if len(last5) >= 3 else None,
+            'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['收盘']), to_float(last5.iloc[0]['收盘'])) if len(last5) >= 5 else None,
+            'trend_3d_label': trend_label(last5.tail(3)['收盘'].tolist()) if len(last5) >= 3 else '数据不足',
+            'trend_5d_label': trend_label(last5['收盘'].tolist()),
+            'source_note': 'A股前复权日线',
+        }
+    return with_retry(_fetch, '药明康德')
 
 
 def get_gold():
-    df = ak.spot_hist_sge(symbol='Au99.99')
-    last5 = df.tail(5).reset_index(drop=True)
-    row = last5.iloc[-1]
-    prev = last5.iloc[-2] if len(last5) >= 2 else None
-    close = to_float(row['close'])
-    prev_close = to_float(prev['close']) if prev is not None else None
-    return {
-        'name': '黄金(Au99.99)',
-        'en': 'SPOT GOLD',
-        'date': str(row['date'])[:10],
-        'price': close,
-        'change': close - prev_close if prev_close is not None else None,
-        'pct': safe_pct(close, prev_close),
-        'open': to_float(row['open']) if 'open' in row else close,
-        'high': to_float(row['high']) if 'high' in row else close,
-        'low': to_float(row['low']) if 'low' in row else close,
-        'history_dates': [str(x)[:10] for x in last5['date'].tolist()],
-        'history_prices': [to_float(x) for x in last5['close'].tolist()],
-        'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[-3]['close'])) if len(last5) >= 3 else None,
-        'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[0]['close'])) if len(last5) >= 5 else None,
-        'trend_3d_label': trend_label(last5.tail(3)['close'].tolist()) if len(last5) >= 3 else '数据不足',
-        'trend_5d_label': trend_label(last5['close'].tolist()),
-        'source_note': '上金所现货',
-    }
+    def _fetch():
+        df = ak.spot_hist_sge(symbol='Au99.99')
+        last5 = df.tail(5).reset_index(drop=True)
+        row = last5.iloc[-1]
+        prev = last5.iloc[-2] if len(last5) >= 2 else None
+        close = to_float(row['close'])
+        prev_close = to_float(prev['close']) if prev is not None else None
+        return {
+            'name': '黄金(Au99.99)',
+            'en': 'SPOT GOLD',
+            'date': str(row['date'])[:10],
+            'price': close,
+            'change': close - prev_close if prev_close is not None else None,
+            'pct': safe_pct(close, prev_close),
+            'open': to_float(row['open']) if 'open' in row else close,
+            'high': to_float(row['high']) if 'high' in row else close,
+            'low': to_float(row['low']) if 'low' in row else close,
+            'history_dates': [str(x)[:10] for x in last5['date'].tolist()],
+            'history_prices': [to_float(x) for x in last5['close'].tolist()],
+            'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[-3]['close'])) if len(last5) >= 3 else None,
+            'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[0]['close'])) if len(last5) >= 5 else None,
+            'trend_3d_label': trend_label(last5.tail(3)['close'].tolist()) if len(last5) >= 3 else '数据不足',
+            'trend_5d_label': trend_label(last5['close'].tolist()),
+            'source_note': '上金所现货',
+        }
+    return with_retry(_fetch, '黄金')
 
 
 def get_brent():
-    df = ak.futures_foreign_hist(symbol='OIL')
-    last5 = df.tail(5).reset_index(drop=True)
-    row = last5.iloc[-1]
-    prev = last5.iloc[-2] if len(last5) >= 2 else None
-    close = to_float(row['close'])
-    prev_close = to_float(prev['close']) if prev is not None else None
-    return {
-        'name': '布伦特原油连续',
-        'en': 'BRENT OIL',
-        'date': str(row['date'])[:10],
-        'price': close,
-        'change': close - prev_close if prev_close is not None else None,
-        'pct': safe_pct(close, prev_close),
-        'open': to_float(row['open']) if 'open' in row else close,
-        'high': to_float(row['high']) if 'high' in row else close,
-        'low': to_float(row['low']) if 'low' in row else close,
-        'history_dates': [str(x)[:10] for x in last5['date'].tolist()],
-        'history_prices': [to_float(x) for x in last5['close'].tolist()],
-        'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[-3]['close'])) if len(last5) >= 3 else None,
-        'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[0]['close'])) if len(last5) >= 5 else None,
-        'trend_3d_label': trend_label(last5.tail(3)['close'].tolist()) if len(last5) >= 3 else '数据不足',
-        'trend_5d_label': trend_label(last5['close'].tolist()),
-        'source_note': '海外期货连续',
-    }
+    def _fetch():
+        df = ak.futures_foreign_hist(symbol='OIL')
+        last5 = df.tail(5).reset_index(drop=True)
+        row = last5.iloc[-1]
+        prev = last5.iloc[-2] if len(last5) >= 2 else None
+        close = to_float(row['close'])
+        prev_close = to_float(prev['close']) if prev is not None else None
+        return {
+            'name': '布伦特原油连续',
+            'en': 'BRENT OIL',
+            'date': str(row['date'])[:10],
+            'price': close,
+            'change': close - prev_close if prev_close is not None else None,
+            'pct': safe_pct(close, prev_close),
+            'open': to_float(row['open']) if 'open' in row else close,
+            'high': to_float(row['high']) if 'high' in row else close,
+            'low': to_float(row['low']) if 'low' in row else close,
+            'history_dates': [str(x)[:10] for x in last5['date'].tolist()],
+            'history_prices': [to_float(x) for x in last5['close'].tolist()],
+            'trend_3d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[-3]['close'])) if len(last5) >= 3 else None,
+            'trend_5d_pct': safe_pct(to_float(last5.iloc[-1]['close']), to_float(last5.iloc[0]['close'])) if len(last5) >= 5 else None,
+            'trend_3d_label': trend_label(last5.tail(3)['close'].tolist()) if len(last5) >= 3 else '数据不足',
+            'trend_5d_label': trend_label(last5['close'].tolist()),
+            'source_note': '海外期货连续',
+        }
+    return with_retry(_fetch, '布伦特原油')
 
 
-items = [get_wuxi(), get_gold(), get_brent()]
-OUT.parent.mkdir(parents=True, exist_ok=True)
-OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding='utf-8')
-print(OUT)
+def main():
+    items = [get_wuxi(), get_gold(), get_brent()]
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding='utf-8')
+    print(OUT)
+
+
+if __name__ == '__main__':
+    main()

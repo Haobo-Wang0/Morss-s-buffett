@@ -23,9 +23,20 @@ def fmt_delta(v):
     return f"{float(v):+.2f}"
 
 
+def stance(item):
+    p = item.get('pct') or 0
+    t3 = item.get('trend_3d_pct') or 0
+    t5 = item.get('trend_5d_pct') or 0
+    score = p * 0.4 + t3 * 0.8 + t5 * 1.0
+    if score >= 3:
+        return '一句话结论：偏多，趋势占优，但别追高。'
+    if score <= -3:
+        return '一句话结论：偏空，先看止跌，不急着上仓位。'
+    return '一句话结论：先观望，等更明确的方向。'
+
+
 def advice(item):
     p = item.get('pct')
-    t3 = item.get('trend_3d_pct')
     t5 = item.get('trend_5d_pct')
     name = item['name']
 
@@ -64,6 +75,7 @@ def main():
             f"- 开/高/低：{fmt_price(item['open'])} / {fmt_price(item['high'])} / {fmt_price(item['low'])}\n"
             f"- 3日趋势：{item.get('trend_3d_label', '数据不足')}（{fmt_pct(item.get('trend_3d_pct'))}）\n"
             f"- 5日趋势：{item.get('trend_5d_label', '数据不足')}（{fmt_pct(item.get('trend_5d_pct'))}）\n"
+            f"- {stance(item)}\n"
             f"- 数据口径：{item['source_note']}\n"
             f"- {advice(item)}"
         )
