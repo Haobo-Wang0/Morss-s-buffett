@@ -50,17 +50,18 @@ def with_retry(fetcher, label, retries=3, sleep_seconds=2):
     raise RuntimeError(f'{label} 获取失败: {last_err}')
 
 
-def get_wuxi():
+def get_a_share_stock(symbol, name, en):
     def _fetch():
-        df = ak.stock_zh_a_hist(symbol='603259', period='daily', adjust='qfq')
+        df = ak.stock_zh_a_hist(symbol=symbol, period='daily', adjust='qfq')
         last5 = df.tail(5).reset_index(drop=True)
         row = last5.iloc[-1]
         prev = last5.iloc[-2] if len(last5) >= 2 else None
         close = to_float(row['收盘'])
         prev_close = to_float(prev['收盘']) if prev is not None else None
         return {
-            'name': '药明康德',
-            'en': 'WUXI APPTEC',
+            'name': name,
+            'en': en,
+            'symbol': symbol,
             'date': str(row['日期'])[:10],
             'price': close,
             'change': close - prev_close if prev_close is not None else None,
@@ -76,7 +77,15 @@ def get_wuxi():
             'trend_5d_label': trend_label(last5['收盘'].tolist()),
             'source_note': 'A股前复权日线',
         }
-    return with_retry(_fetch, '药明康德')
+    return with_retry(_fetch, name)
+
+
+def get_wuxi():
+    return get_a_share_stock('603259', '药明康德', 'WUXI APPTEC')
+
+
+def get_deye():
+    return get_a_share_stock('605117', '德业股份', 'DEYE')
 
 
 def get_gold():
@@ -138,7 +147,7 @@ def get_brent():
 
 
 def main():
-    items = [get_wuxi(), get_gold(), get_brent()]
+    items = [get_wuxi(), get_deye(), get_gold(), get_brent()]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding='utf-8')
     print(OUT)
