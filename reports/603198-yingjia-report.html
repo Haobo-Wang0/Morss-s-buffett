@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>迎驾贡酒（603198）完整分析报告</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --paper: #fffdf9;
+      --ink: #222;
+      --sub: #666;
+      --line: #ddd3c2;
+      --accent: #7a4b1f;
+      --soft: #f1e7d7;
+      --good: #246b3f;
+      --warn: #8a5a00;
+      --bad: #8b2f2f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 32px auto;
+      padding: 0 20px 40px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.04);
+      margin-bottom: 20px;
+    }
+    h1,h2,h3 { line-height: 1.3; margin: 0 0 14px; }
+    h1 { font-size: 34px; }
+    h2 { font-size: 24px; margin-top: 26px; padding-top: 8px; border-top: 1px solid var(--line); }
+    h3 { font-size: 18px; margin-top: 18px; }
+    p, li { color: var(--ink); }
+    .muted { color: var(--sub); }
+    .lead {
+      font-size: 18px;
+      color: #333;
+    }
+    .quote {
+      border-left: 4px solid var(--accent);
+      background: var(--soft);
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 16px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: #fff;
+    }
+    .metric .k { color: var(--sub); font-size: 13px; }
+    .metric .v { font-size: 26px; font-weight: 700; margin-top: 6px; }
+    .pill {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: var(--soft);
+      color: var(--accent);
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .score {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+    th { background: #faf6ef; }
+    .good { color: var(--good); font-weight: 700; }
+    .warn { color: var(--warn); font-weight: 700; }
+    .bad { color: var(--bad); font-weight: 700; }
+    .footer {
+      font-size: 13px;
+      color: var(--sub);
+    }
+    code {
+      background: #f3efe7;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    ul { padding-left: 22px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>迎驾贡酒（603198）完整分析报告</h1>
+      <p class="muted">交付形式：网页报告（HTML）｜分析口径：巴菲特式长期价值框架 + 公开资料整理</p>
+      <p class="lead">这不是一份追逐情绪的短线点评，而是一份围绕 <strong>生意质量、护城河、增长质量、资本配置、估值与安全边际</strong> 的完整分析。若只用一句话概括：<strong>迎驾贡酒是一家值得认真研究的优质区域白酒企业，但是否值得买入，最终取决于它能否把“区域强势品牌”持续升级为更可验证的长期现金流机器，以及你为此付出的价格是否合理。</strong></p>
+      <div class="quote">
+        <strong>先给结论：</strong><br>
+        迎驾贡酒不是那种“一看就知道伟大到可以忽略价格”的企业，但它也绝不是普通消费股。它处在一个不错的位置：品牌和区域壁垒真实存在，产品结构升级路径清晰，盈利质量和毛利结构不错，估值看上去不夸张。真正的分歧在于：它的护城河到底能厚到什么程度，全国化和高端化能走多远。
+      </div>
+      <span class="pill">白酒Ⅱ</span>
+      <span class="pill">区域强势酒企</span>
+      <span class="pill">生态白酒叙事</span>
+      <span class="pill">中高档白酒为主</span>
+      <span class="pill">长期主义分析</span>
+    </div>
+
+    <div class="card">
+      <h2>一、核心速览</h2>
+      <div class="grid">
+        <div class="metric"><div class="k">公司</div><div class="v">迎驾贡酒</div></div>
+        <div class="metric"><div class="k">代码</div><div class="v">603198</div></div>
+        <div class="metric"><div class="k">主营业务</div><div class="v">白酒研发、生产、销售</div></div>
+        <div class="metric"><div class="k">行业</div><div class="v">白酒Ⅱ</div></div>
+        <div class="metric"><div class="k">2026Q1营收</div><div class="v">22.30亿元</div></div>
+        <div class="metric"><div class="k">2026Q1净利润</div><div class="v">8.35亿元</div></div>
+        <div class="metric"><div class="k">2026Q1毛利率</div><div class="v">75.60%</div></div>
+        <div class="metric"><div class="k">动态市盈率</div><div class="v">9.31</div></div>
+        <div class="metric"><div class="k">市净率</div><div class="v">2.71</div></div>
+        <div class="metric"><div class="k">2026Q1 ROE</div><div class="v">7.55%</div></div>
+        <div class="metric"><div class="k">每股经营现金流</div><div class="v">1.42元</div></div>
+        <div class="metric"><div class="k">公司亮点</div><div class="v">徽酒代表企业之一</div></div>
+      </div>
+      <table>
+        <tr><th>维度</th><th>判断</th><th>一句话解释</th></tr>
+        <tr><td>生意可理解性</td><td class="good">高</td><td>白酒商业模式成熟，品牌、渠道、产品结构是核心变量。</td></tr>
+        <tr><td>护城河厚度</td><td class="warn">中上</td><td>区域品牌与生态品类有壁垒，但全国心智和顶级定价权仍待验证。</td></tr>
+        <tr><td>盈利质量</td><td class="good">较强</td><td>毛利率高，净利润规模可观，经营现金流表现不差。</td></tr>
+        <tr><td>增长确定性</td><td class="warn">中等</td><td>行业调整期中仍有增长，但需持续观察真实动销和渠道质量。</td></tr>
+        <tr><td>资本配置</td><td class="warn">中上</td><td>重心仍在主业、品牌和市场拓展，暂未见明显偏航。</td></tr>
+        <tr><td>估值吸引力</td><td class="good">偏有吸引力</td><td>若公开口径动态PE约9倍属实，估值不算贵，但仍要防周期和预期偏差。</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>二、公司到底在卖什么</h2>
+      <p>迎驾贡酒表面卖的是白酒，实际上卖的是几种更难复制的东西：</p>
+      <ul>
+        <li><strong>品牌认知</strong>：消费者在宴请、礼赠和社交场景中的默认选择权。</li>
+        <li><strong>渠道控制力</strong>：经销网络、终端铺货、价格体系与区域深耕能力。</li>
+        <li><strong>产品结构升级能力</strong>：把销量增长转成高毛利、高利润的中高端收入。</li>
+        <li><strong>文化与品类叙事</strong>：公司长期强调“生态白酒”，试图形成区别于普通区域酒企的认知标签。</li>
+      </ul>
+      <p>公开资料显示，公司主要从事白酒研发、生产和销售，产品包括 <strong>大师版、洞藏、贡酒、金银星系列、百年迎驾</strong> 等，其中 <strong>洞藏、贡酒系列</strong> 是其主要代表产品。它不是纯经销商型企业，而是 <strong>集产、供、销为一体、具有完整产业链的现代化白酒企业</strong>。</p>
+      <p>这类企业如果经营得当，通常会有几个让长期投资者喜欢的特征：高毛利、低资本消耗、品牌可复利、现金流有韧性。</p>
+    </div>
+
+    <div class="card">
+      <h2>三、行业位置：为什么白酒值得看，但不能只看“白酒”两个字</h2>
+      <p>白酒行业本身有吸引人的地方：</p>
+      <ul>
+        <li>消费习惯稳定，尤其在商务、宴请、礼赠场景中仍有根基；</li>
+        <li>龙头或强势品牌有较强提价权；</li>
+        <li>渠道和品牌一旦站稳，后来者很难迅速替代；</li>
+        <li>高端与次高端产品结构改善，往往能显著抬升利润率。</li>
+      </ul>
+      <p>但问题在于，<strong>“行业不错”不等于“每家公司都一样好”。</strong> 白酒内部差异极大，核心区别通常在于：</p>
+      <ul>
+        <li>全国品牌还是区域品牌；</li>
+        <li>高端心智强不强；</li>
+        <li>增长靠品牌拉动，还是靠渠道压货；</li>
+        <li>能否穿越行业调整期，而不是只在顺风时看起来漂亮。</li>
+      </ul>
+      <p>公司在2026年经营计划中自己也承认：<strong>白酒行业仍处于调整修复期，市场竞争依旧激烈，但消费信心有望边际改善。</strong> 这句话很重要。它说明公司并没有把环境粉饰成一片大好，而是承认行业仍在挤压、分化和修复中。这种背景下还能稳住营收和利润，比顺周期时期的增长更值得研究。</p>
+    </div>
+
+    <div class="card">
+      <h2>四、护城河分析：迎驾贡酒的“城墙”到底有多厚</h2>
+      <h3>1. 品牌护城河</h3>
+      <p>迎驾贡酒毫无疑问有品牌资产，尤其在安徽及其优势市场中。它不是一个没有认知基础的新酒企。公司长期强调“迎宾文化”“生态白酒”“中国生态白酒领军品牌”等标签，说明其品牌战略不是只围绕单一价格带，而是试图打造更可持续的品类区隔。</p>
+      <p>从公开表述看，公司认为自身品牌品类优势主要体现在：</p>
+      <ul>
+        <li>历史传承和区域文化绑定；</li>
+        <li>生态酿造概念持续强化；</li>
+        <li>“洞藏”等系列承担中高端升级角色。</li>
+      </ul>
+      <p>但必须保持清醒：<strong>有品牌，不等于有最厚的护城河。</strong> 与全国顶级白酒相比，迎驾贡酒更像是一家强区域品牌、并试图向更高层级跃升的企业。它的挑战不是“有没有品牌”，而是：</p>
+      <ul>
+        <li>品牌影响力能否从区域强势变成更广泛的消费者心智；</li>
+        <li>高端价格带是否稳固；</li>
+        <li>外埠市场消费者是否愿意持续为其品牌溢价买单。</li>
+      </ul>
+
+      <h3>2. 渠道护城河</h3>
+      <p>白酒行业真正的脏活累活，不在广告里，而在渠道里。公司销售模式采用 <strong>经销与直销结合</strong>，销售公司负责对外销售。它在2026年计划中明确提到：</p>
+      <ul>
+        <li>深耕安徽本土市场；</li>
+        <li>攻坚苏沪市场；</li>
+        <li>突破外围市场；</li>
+        <li>推进新零售渠道与会员体系、数字化平台。</li>
+      </ul>
+      <p>这说明它并不满足于“守住安徽”，而是希望把局部优势延展出去。对投资者来说，这既是机会，也是检验点。因为区域酒企最常见的天花板，就是出省后品牌号召力和渠道效率不够。</p>
+
+      <h3>3. 产品结构护城河</h3>
+      <p>这家公司最值得盯住的变量之一，是它能否持续把收入向中高端产品集中。公开异动资料提到，2026Q1中高档白酒收入约 <strong>18.73亿元</strong>，同比增长 <strong>8.9%</strong>。如果这一趋势真实且可持续，说明公司不是单纯靠低价量扩张，而是在做更有质量的增长。</p>
+      <p>对酒企来说，真正值钱的不是“卖得多”，而是<strong>卖得更贵、卖得更稳、卖得更久</strong>。</p>
+    </div>
+
+    <div class="card">
+      <h2>五、财务质量：数据在说什么</h2>
+      <p>以下数据来自公开网页抓取，足够支持方向判断，但仍建议你在正式投资前对照公司最新公告核验。</p>
+      <table>
+        <tr><th>指标</th><th>数值</th><th>解读</th></tr>
+        <tr><td>2026Q1 营业总收入</td><td>22.30亿元</td><td>同比增长8.91%，在行业修复期仍保持正增长，说明经营并未失速。</td></tr>
+        <tr><td>2026Q1 净利润</td><td>8.35亿元</td><td>同比增长0.73%，利润端增长慢于收入端，值得继续观察费用、结构和渠道压力。</td></tr>
+        <tr><td>2026Q1 毛利率</td><td>75.60%</td><td>白酒行业典型高毛利特征，说明产品和品牌仍有不错溢价能力。</td></tr>
+        <tr><td>2026Q1 净资产收益率</td><td>7.55%</td><td>季度口径不差，对应年化有一定想象空间，但不能直接线性外推。</td></tr>
+        <tr><td>2026Q1 每股经营现金流</td><td>1.42元</td><td>经营现金流不弱，说明利润并非完全停留在报表层面。</td></tr>
+        <tr><td>动态市盈率</td><td>9.308</td><td>若口径准确，市场给的估值不算激进，甚至偏保守。</td></tr>
+        <tr><td>市净率</td><td>2.71</td><td>与高ROE消费股匹配时不夸张，需结合长期盈利能力来看。</td></tr>
+      </table>
+
+      <h3>1. 收入和利润的关系</h3>
+      <p>收入增长 8.91%，净利润只增长 0.73%，这不是坏事，但它提醒我们不要只看营收增长。利润增速偏慢可能来自几种情况：</p>
+      <ul>
+        <li>费用投放增加；</li>
+        <li>渠道或品牌建设加大投入；</li>
+        <li>产品结构改善速度不及预期；</li>
+        <li>行业修复过程中，价格体系或节奏仍需平衡。</li>
+      </ul>
+      <p>这意味着，迎驾贡酒当前更像处在“守住质量、争取修复”的阶段，而非无阻力狂飙。</p>
+
+      <h3>2. 毛利率的含义</h3>
+      <p>75.60% 的毛利率很有分量。它说明公司仍具备较强产品溢价和经营质量，不像一个靠低价拼量的企业。对白酒公司来说，高毛利本身不稀奇，但能在行业调整期维持高毛利，说明品牌和产品结构没有明显塌陷。</p>
+
+      <h3>3. 现金流口径</h3>
+      <p>每股经营现金流 1.42 元，不算差。巴菲特式分析里，利润只是起点，现金才更接近真相。若后续几期现金流持续匹配利润，这会是加分项；若利润继续增长但现金流掉队，就要提高警惕。</p>
+    </div>
+
+    <div class="card">
+      <h2>六、增长质量：这增长是“真长”还是“挤出来的”</h2>
+      <p>我更关心增长的成分，而不仅是增速本身。</p>
+      <table>
+        <tr><th>我喜欢的增长</th><th>我警惕的增长</th></tr>
+        <tr>
+          <td>
+            <ul>
+              <li>中高端产品占比持续提升</li>
+              <li>终端动销真实改善</li>
+              <li>省内强势 + 省外稳步复制</li>
+              <li>品牌力提升带来价格和利润改善</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>靠压货堆收入</li>
+              <li>靠短期促销和费用换增长</li>
+              <li>靠经销商透支库存</li>
+              <li>靠行业情绪掩盖内部问题</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <p>从公司公开经营计划看，它现在把工作重心放在：</p>
+      <ul>
+        <li>生态引领、提质生产；</li>
+        <li>文化赋能、提升品牌；</li>
+        <li>深耕市场、做强销售；</li>
+        <li>精益管控、优化管理。</li>
+      </ul>
+      <p>这些词如果只是口号，没意义；但如果落实到中高档收入占比、渠道质量和现金流改善上，就有价值。对迎驾贡酒而言，<strong>未来2-3年最关键的，不是“还能不能增长”，而是“增长到底有没有质量”。</strong></p>
+    </div>
+
+    <div class="card">
+      <h2>七、管理层与资本配置</h2>
+      <p>一家企业真正的考试，在赚到钱之后才开始。白酒行业尤其如此。景气的时候，很多公司会因为赚钱太容易而开始犯错：乱扩张、乱并购、乱投资、乱讲故事。</p>
+      <p>从目前公开材料看，迎驾贡酒管理层的资源投向仍围绕主业：</p>
+      <ul>
+        <li>产业园和生产设施升级；</li>
+        <li>自动化、数智化建设；</li>
+        <li>品牌和文化营销；</li>
+        <li>省内深耕与省外市场突破；</li>
+        <li>新零售、会员体系和数字化平台。</li>
+      </ul>
+      <p>这至少说明它暂时没有明显偏离“把钱投回主业”的轨道。对长期投资者来说，这比许多多元化冲动更值得信任。</p>
+      <p>但我仍会盯着几件事：</p>
+      <ul>
+        <li>营销费用是否换来了更牢固的品牌和更健康的渠道；</li>
+        <li>资本开支回报率是否真的提高了生产与盈利效率；</li>
+        <li>管理层是否在行业低谷时依然保持价格纪律和战略定力。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>八、风险清单</h2>
+      <table>
+        <tr><th>风险</th><th>等级</th><th>解释</th></tr>
+        <tr><td>区域品牌天花板</td><td class="warn">中高</td><td>若省外扩张不顺，估值上限和成长空间都会受限。</td></tr>
+        <tr><td>行业修复不及预期</td><td class="warn">中高</td><td>白酒处于调整修复期，消费、库存、渠道都有波动。</td></tr>
+        <tr><td>利润增速慢于收入</td><td class="warn">中等</td><td>若持续发生，说明费用、结构或价格体系存在压力。</td></tr>
+        <tr><td>渠道质量风险</td><td class="warn">中等</td><td>一旦压货、库存、终端动销失衡，报表会晚于现实反映问题。</td></tr>
+        <tr><td>估值错觉</td><td class="good">相对可控</td><td>当前口径下估值不算贵，但便宜并不自动等于低风险。</td></tr>
+      </table>
+      <p>这家公司最大的风险，不是“会不会明天暴跌”，而是<strong>市场把区域强势和全国级护城河混为一谈</strong>。如果未来品牌升级和外拓验证不够，估值就很难长期抬升。</p>
+    </div>
+
+    <div class="card">
+      <h2>九、估值怎么看</h2>
+      <p>如果公开网页口径中的 <strong>动态PE约 9.31 倍</strong> 基本可靠，那么市场当前对迎驾贡酒的定价并不昂贵。对一家具备高毛利、稳定盈利能力、较强区域品牌力的白酒公司来说，这个估值至少不属于“已经把未来十年的乐观都透支掉”的水平。</p>
+      <p>但估值不能孤立看。你得同时问三件事：</p>
+      <ol>
+        <li>这个利润水平能不能稳住？</li>
+        <li>增长放缓是不是短期现象，还是结构性问题？</li>
+        <li>公司未来是“稳定现金牛”，还是“还能进一步升级”的企业？</li>
+      </ol>
+      <p>如果答案偏乐观，当前估值就可能有吸引力；如果利润质量或增长质量转弱，低估值也可能只是市场提前反映问题。</p>
+    </div>
+
+    <div class="card">
+      <h2>十、巴菲特式总评</h2>
+      <div class="grid">
+        <div class="metric"><div class="k">生意质量</div><div class="v">8.3/10</div></div>
+        <div class="metric"><div class="k">护城河厚度</div><div class="v">7.4/10</div></div>
+        <div class="metric"><div class="k">增长质量</div><div class="v">7.1/10</div></div>
+        <div class="metric"><div class="k">资本配置</div><div class="v">7.6/10</div></div>
+        <div class="metric"><div class="k">估值吸引力</div><div class="v">8.1/10</div></div>
+        <div class="metric"><div class="k">综合主观评分</div><div class="v score">7.7</div></div>
+      </div>
+      <p><strong>我的判断：</strong>迎驾贡酒是一家值得放进长期观察名单、甚至值得严肃研究仓位的公司。它的优点是明确的：品牌基础真实、区域优势明显、毛利率高、产品结构有升级逻辑、估值口径看起来不夸张。它的限制也同样明确：护城河仍以区域和品类标签为主，全国级强品牌心智尚未完全坐实，增长质量和外延空间需要持续验证。</p>
+      <p>所以最诚实的结论不是“它一定大涨”，而是：</p>
+      <div class="quote">
+        <strong>若你追求的是长期可理解、现金流较强、估值不离谱的消费资产，迎驾贡酒值得重点研究；若你要求的是那种几乎无须怀疑护城河厚度的超级白酒龙头，它还没有完全站到那个位置。</strong>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>十一、行动建议</h2>
+      <table>
+        <tr><th>投资者类型</th><th>建议</th></tr>
+        <tr><td>长期价值型</td><td>可以继续深挖年报、产品结构、区域扩张和现金流，作为重点跟踪标的。</td></tr>
+        <tr><td>保守型</td><td>先确认利润增速修复是否持续、渠道质量是否稳，再决定是否进入。</td></tr>
+        <tr><td>激进型</td><td>若仅因估值低就重仓，风险在于把“便宜”误当成“确定性”。</td></tr>
+        <tr><td>短线型</td><td>这份报告不适合你。它不是为明天涨跌写的。</td></tr>
+      </table>
+      <p>如果你接下来要做真正的投资判断，我建议下一步补三样东西：</p>
+      <ol>
+        <li>最新年报/季报原文核验；</li>
+        <li>产品结构和区域收入拆分；</li>
+        <li>与古井贡酒、口子窖、今世缘等可比公司的横向对比。</li>
+      </ol>
+    </div>
+
+    <div class="card footer">
+      <p><strong>说明：</strong>本报告基于公开网页资料整理与价值投资框架推演，不构成投资建议。关键公开口径包括：同花顺 F10 公司概况/经营信息页面中的主营业务、行业分类、季度收入利润、毛利率、ROE、经营现金流、动态PE、市净率，以及公司经营计划与竞争力描述。</p>
+      <p><strong>建议用途：</strong>适合作为研究底稿、讨论稿、转 PDF 前的定稿版本。</p>
+    </div>
+  </div>
+</body>
+</html>
